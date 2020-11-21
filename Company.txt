@@ -1,0 +1,59 @@
+{
+  "Director": {
+    "DirectSubordinates": [
+      {
+        "DirectSubordinates": [
+          {
+            "FullName": "Dave",
+            "Position": "Big Guy",
+            "Wage": 120000.0
+          },
+          {
+            "FullName": "Marvin",
+            "Position": "Big Black Guy",
+            "Wage": 120000.0
+          },
+          {
+            "DirectSubordinates": [
+              {
+                "FullName": "Ernie, the left hand fast but the right hand sturdy",
+                "Position": "Notorious rapper and a boxer",
+                "Wage": 0.0
+              },
+              {
+                "FullName": "Eggs Benny",
+                "Position": "Notorious rapper and a boxer",
+                "Wage": 0.0
+              },
+              {
+                "FullName": "Ghost",
+                "Position": "Notorious rapper and a boxer",
+                "Wage": 0.0
+              },
+              {
+                "FullName": "Jim, the iron chin",
+                "Position": "Notorious rapper and a boxer",
+                "Wage": 0.0
+              }
+            ],
+            "FullName": "Coach",
+            "Position": "The Chief of the field operation branch",
+            "Wage": 0.0
+          }
+        ],
+        "FullName": "Raymond",
+        "Position": "Mickey's right hand",
+        "Wage": 15000000.0
+      },
+      {
+        "FullName": "Big Bunny",
+        "Position": "Chief of the Freezer",
+        "Wage": 12000.0
+      }
+    ],
+    "FullName": "Mickey Pearson",
+    "Position": "CEO, king of the jungle",
+    "Wage": 300000000.0
+  },
+  "DisplayWorkers": null
+}
