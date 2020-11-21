@@ -47,7 +47,7 @@ namespace TRPZ
                 Wage = 0
             };
            
-            foreach (var item in toddlers) item.AddCommander(manager2);
+          
            
             Worker worker5 = new Worker()
             {
@@ -70,10 +70,9 @@ namespace TRPZ
             List<ICommandable> knuckleHeads = new List<ICommandable>();
             knuckleHeads.Add(worker5);
             knuckleHeads.Add(worker6);
-            foreach(var item in knuckleHeads) item.AddCommander(manager1);
+           
             manager1.AddSubordinate(worker5);
             manager1.AddSubordinate(worker6);
-            manager2.AddCommander(manager1);
             manager1.AddSubordinate(manager2);
             Worker personal = new Worker()
             {
@@ -87,17 +86,31 @@ namespace TRPZ
                 Position = "CEO, king of the jungle",
                 Wage = 300000000
             };
-            manager1.AddCommander(director);
+          
             director.AddSubordinate(manager1);
             director.AddSubordinate(personal);
-            personal.AddCommander(director);
             company.Director = director;
             string jsonString = JsonConvert.SerializeObject(company, Formatting.Indented);
-            Console.WriteLine(company.Director.DirectSubordinates.Count);
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.Converters.Add(new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter());
+            serializer.NullValueHandling = NullValueHandling.Ignore;
+            serializer.TypeNameHandling = TypeNameHandling.Auto;
+            serializer.Formatting = Formatting.Indented;
 
-            File.WriteAllText("D:/Study/TRPZ/Company.txt", jsonString);
+            using (StreamWriter sw = new StreamWriter("D:/Study/TRPZ/Company.txt"))
+            using (JsonWriter writer = new Newtonsoft.Json.JsonTextWriter(sw))
+            {
+                serializer.Serialize(writer,company, typeof(Company));
+            }
+
+          //  File.WriteAllText("D:/Study/TRPZ/Company.txt", jsonString);
+            Company newCompany = JsonConvert.DeserializeObject<Company>(File.ReadAllText("D:/Study/TRPZ/Company.txt"), new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto,
+                NullValueHandling = NullValueHandling.Ignore,
+            });
             DirectOrder display = new DirectOrder();
-           var a = display.DisplayEmployees(director);
+           var a = display.DisplayEmployees(company.Director);
            foreach (var item in a)
            {
                Console.WriteLine(item.FullName);

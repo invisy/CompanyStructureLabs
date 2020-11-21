@@ -9,8 +9,6 @@ namespace TRPZ
     [DataContract]
     class Manager : Employee, ICommandable, ICommander
     {
-        [JsonIgnore]
-        public ICommander SuperVisor { get; set; }
         [DataMember]
         public List<ICommandable> DirectSubordinates { get; set; }
 
@@ -21,14 +19,6 @@ namespace TRPZ
         public void AddSubordinate(ICommandable subordinate)
         {
             if(subordinate!=null) DirectSubordinates.Add(subordinate);
-        }
-
-        public void AddCommander(ICommander supervisor)
-        {
-            if (SuperVisor is null)
-            {
-                SuperVisor = supervisor;
-            }
         }
     }
 }
