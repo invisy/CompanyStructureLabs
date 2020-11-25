@@ -11,6 +11,9 @@ namespace TRPZ
     {
         static void Main(string[] args)
         {
+            //Dictionary string key of command and object of command
+            //no relation  graph db 
+            // App.Config default search strategy (only for search methods private usage,not display)
             Console.WriteLine("Enter a path to file");
             Company company = Company.BuildStructure(Console.ReadLine());
             Console.WriteLine("Success");

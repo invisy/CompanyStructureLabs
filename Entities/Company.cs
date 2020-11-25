@@ -8,9 +8,9 @@ public class Company
 
     public IDisplayable DisplayWorkers { get; set; }
 
-    public Company()
+    public Company(IDisplayable displayWorkers)
     {
-        DisplayWorkers = new OrderByPosition();
+        DisplayWorkers = displayWorkers;
     }
     public List<Employee> Display()
     {
