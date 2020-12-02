@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TRPZ
 {
-    public class DirectOrder 
+    public class DirectOrder :IDisplayable
     {
         List<Employee> employees = new List<Employee>();
         public List<Employee> DisplayEmployees(ICommander commander)

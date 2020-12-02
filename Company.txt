@@ -2,35 +2,43 @@
   "Director": {
     "DirectSubordinates": [
       {
+        "$type": "TRPZ.Manager, TRPZ",
         "DirectSubordinates": [
           {
+            "$type": "TRPZ.Worker, TRPZ",
             "FullName": "Dave",
             "Position": "Big Guy",
             "Wage": 120000.0
           },
           {
+            "$type": "TRPZ.Worker, TRPZ",
             "FullName": "Marvin",
             "Position": "Big Black Guy",
             "Wage": 120000.0
           },
           {
+            "$type": "TRPZ.Manager, TRPZ",
             "DirectSubordinates": [
               {
+                "$type": "TRPZ.Worker, TRPZ",
                 "FullName": "Ernie, the left hand fast but the right hand sturdy",
                 "Position": "Notorious rapper and a boxer",
                 "Wage": 0.0
               },
               {
+                "$type": "TRPZ.Worker, TRPZ",
                 "FullName": "Eggs Benny",
                 "Position": "Notorious rapper and a boxer",
                 "Wage": 0.0
               },
               {
+                "$type": "TRPZ.Worker, TRPZ",
                 "FullName": "Ghost",
                 "Position": "Notorious rapper and a boxer",
                 "Wage": 0.0
               },
               {
+                "$type": "TRPZ.Worker, TRPZ",
                 "FullName": "Jim, the iron chin",
                 "Position": "Notorious rapper and a boxer",
                 "Wage": 0.0
@@ -46,6 +54,7 @@
         "Wage": 15000000.0
       },
       {
+        "$type": "TRPZ.Worker, TRPZ",
         "FullName": "Big Bunny",
         "Position": "Chief of the Freezer",
         "Wage": 12000.0
@@ -54,6 +63,5 @@
     "FullName": "Mickey Pearson",
     "Position": "CEO, king of the jungle",
     "Wage": 300000000.0
-  },
-  "DisplayWorkers": null
+  }
 }

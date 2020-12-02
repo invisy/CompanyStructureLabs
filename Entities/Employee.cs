@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace TRPZ
 {
@@ -10,7 +11,7 @@ namespace TRPZ
         [DataMember]
         public string Position { get; set; }
         [DataMember]
-        public double Wage { get; set; }
+        public Decimal Wage { get; set; }
 
     }
 }

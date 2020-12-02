@@ -11,103 +11,84 @@ namespace TRPZ
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Company company = new Company();
-            Worker worker1 = new Worker
+            //Dictionary string key of command and object of command
+            //no relation  graph db 
+            // App.Config default search strategy (only for search methods private usage,not display)
+            Console.WriteLine("Enter a path to file");
+            Company company = Company.BuildStructure(Console.ReadLine());
+            Console.WriteLine("Success");
+            Console.WriteLine("Enter action commands");
+            //  D:/Study/TRPZ/Company.txt
+            while (true)
             {
-                FullName = "Ernie, the left hand fast but the right hand sturdy",
-                Position = "Notorious rapper and a boxer"
-            };
-            Worker worker2 = new Worker
-            {
-                FullName = "Eggs Benny",
-                Position = "Notorious rapper and a boxer"
-            };
-            Worker worker3 = new Worker
-            {
-                FullName = "Ghost",
-                Position = "Notorious rapper and a boxer"
-            };
-            Worker worker4 = new Worker
-            {
-                FullName = "Jim, the iron chin",
-                Position = "Notorious rapper and a boxer"
-            };
-            List<ICommandable> toddlers = new List<ICommandable>();
-            toddlers.Add(worker1);
-            toddlers.Add(worker2);
-            toddlers.Add(worker3);
-            toddlers.Add(worker4);
+               string command = Console.ReadLine();
+               if (command == "add")
+               {
+                   Console.WriteLine("Enter Name");
+                   string name = Console.ReadLine();
+                   Console.WriteLine("Enter Position");
+                   string position = Console.ReadLine();
+                   Console.WriteLine("Enter wage");
+                   decimal wage = Convert.ToDecimal(Console.ReadLine());
+                   Console.WriteLine("Enter supervisor's position");
+                   string positionOfSupervisor = Console.ReadLine();
+                   var supervisor = company.SearchByPosition(positionOfSupervisor);
+                   company.AddWorker(name,position,wage, supervisor[0] as ICommander);
+               }
 
-            Manager manager2 = new Manager
-            {
-                FullName = "Coach",
-                Position = "The Chief of the field operation branch",
-                DirectSubordinates = toddlers,
-                Wage = 0
-            };
-           
-            foreach (var item in toddlers) item.AddCommander(manager2);
-           
-            Worker worker5 = new Worker()
-            {
-                FullName = "Dave",
-                Position = "Big Guy",
-                Wage = 120000
-            };
-            Worker worker6 = new Worker()
-            {
-                FullName = "Marvin",
-                Position = "Big Black Guy",
-                Wage = 120000
-            };
-            Manager manager1 = new Manager
-            {
-                FullName = "Raymond",
-                Position = "Mickey's right hand",
-                Wage = 15000000
-            };
-            List<ICommandable> knuckleHeads = new List<ICommandable>();
-            knuckleHeads.Add(worker5);
-            knuckleHeads.Add(worker6);
-            foreach(var item in knuckleHeads) item.AddCommander(manager1);
-            manager1.AddSubordinate(worker5);
-            manager1.AddSubordinate(worker6);
-            manager2.AddCommander(manager1);
-            manager1.AddSubordinate(manager2);
-            Worker personal = new Worker()
-            {
-                FullName = "Big Bunny",
-                Position = "Chief of the Freezer",
-                Wage = 12000
-            };
-            Director director = new Director
-            {
-                FullName = "Mickey Pearson",
-                Position = "CEO, king of the jungle",
-                Wage = 300000000
-            };
-            manager1.AddCommander(director);
-            director.AddSubordinate(manager1);
-            director.AddSubordinate(personal);
-            personal.AddCommander(director);
-            company.Director = director;
-            string jsonString = JsonConvert.SerializeObject(company, Formatting.Indented);
-            Console.WriteLine(company.Director.DirectSubordinates.Count);
+               if (command == "direct")
+               {
+                   company.DisplayWorkers = new DirectOrder();
+                   foreach (var item in company.Display())
+                   {
+                       Console.WriteLine(item.FullName);
+                   }
+               }
+               if (command == "height")
+               {
+                   company.DisplayWorkers = new OrderByPosition();
+                   foreach (var item in company.Display())
+                   {
+                       Console.WriteLine(item.FullName + " " + item.Position + " " + item.Wage);
+                   }
+               }
 
-            File.WriteAllText("D:/Study/TRPZ/Company.txt", jsonString);
-            DirectOrder display = new DirectOrder();
-           var a = display.DisplayEmployees(director);
-           foreach (var item in a)
-           {
-               Console.WriteLine(item.FullName);
-           }
+               if (command == "wage")
+               {
+                   Console.WriteLine("Enter wage");
+                   decimal wage = Convert.ToDecimal(Console.ReadLine());
+                   var employees = company.SearchByWage(wage);
+                   foreach (var item in employees )
+                   {
+                       Console.WriteLine(item.FullName + " " + item.Position + " " + item.Wage);
+                   }
+               }
+               if (command == "position")
+               {
+                   Console.WriteLine("Enter position");
+                   string position = Console.ReadLine();
+                   foreach (var item in company.SearchByPosition(position))
+                   {
+                       Console.WriteLine(item.FullName + " " + item.Wage);
+                   }
+               }
+               if (command == "subordinates")
+               {
+                   Console.WriteLine("Enter position");
+                   string position = Console.ReadLine();
+                   foreach (var item in company.SearchDirectSubordinates((company.SearchByPosition(position) as ICommander)))
+                   {
+                       var newItem = item as Employee;
+                       Console.WriteLine(newItem.FullName + " " + newItem.Wage);
+                   }
+               }
+               if (command == "save")
+               {
+                   Console.WriteLine("enter path");
+                   company.SaveStructure(Console.ReadLine(),company);
+                   break;
+               }
+            }
         }
     }
-
-        public class Serizalizer
-        {
-
-        }
-
-    }
+}
