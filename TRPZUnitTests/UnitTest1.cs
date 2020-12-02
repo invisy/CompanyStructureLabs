@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using FluentAssertions;
 using NUnit.Framework;
 using TRPZ;
 
@@ -56,7 +57,7 @@ namespace TRPZUnitTests
             //Act
             var actual = LoadSave.Load(path);
             //Assert
-            Assert.AreEqual(expected,actual);
+            expected.Should().BeEquivalentTo(actual);
         }
     }
 }
