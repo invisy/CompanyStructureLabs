@@ -8,7 +8,7 @@ namespace TRPZUnitTests
     public class Tests
     {
         private Company company = new Company();
-            [SetUp]
+        [SetUp]
         public void Setup()
         {
             Director dir = new Director()
