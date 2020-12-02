@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 namespace TRPZ
 {
     [DataContract]
-    class Manager : Employee, ICommandable, ICommander
+    public class Manager : Employee, ICommandable, ICommander
     {
         [DataMember]
         public List<ICommandable> DirectSubordinates { get; set; }

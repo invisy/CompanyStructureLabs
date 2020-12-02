@@ -8,6 +8,10 @@ public class Company
 
     public IDisplayable DisplayWorkers { get; set; }
 
+    public Company()
+    {
+        
+    }
     public Company(IDisplayable displayWorkers)
     {
         DisplayWorkers = displayWorkers;
