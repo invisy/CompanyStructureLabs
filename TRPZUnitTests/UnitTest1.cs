@@ -59,5 +59,49 @@ namespace TRPZUnitTests
             //Assert
             expected.Should().BeEquivalentTo(actual);
         }
+        [Test]
+        public void CanSubordinateBeAddedToManager()
+        {
+            //Arrange
+            var worker = new Worker()
+            {
+                FullName = "test",
+                Position = "test",
+                Wage = 123
+            };
+            var manager = new Manager();
+            List<ICommandable> subordinates =  new List<ICommandable>();
+            subordinates.Add(worker);
+            manager.DirectSubordinates = subordinates;
+            var expected = manager ;
+            //Act
+           var actual = new Manager();
+           actual.AddSubordinate(worker);
+           //Assert
+            expected.Should().BeEquivalentTo(actual);
+        }
+        [Test]
+        public void CanSubordinateBeAddedToDirector()
+        {
+            //Arrange
+            var worker = new Worker()
+            {
+                FullName = "test",
+                Position = "test",
+                Wage = 123
+            };
+            var director = new Director();
+            List<ICommandable> subordinates = new List<ICommandable>();
+            subordinates.Add(worker);
+            director.DirectSubordinates = subordinates;
+            var expected = director;
+            //Act
+            var actual = new Director();
+            actual.AddSubordinate(worker);
+            //Assert
+            expected.Should().BeEquivalentTo(actual);
+        }
+
+
     }
 }

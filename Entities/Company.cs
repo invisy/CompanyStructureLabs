@@ -7,6 +7,7 @@ public class Company
     public Director Director { get; set; }
 
     public IDisplayable DisplayWorkers { get; set; }
+    private IDisplayable defaultSearch;
 
     public Company()
     {
