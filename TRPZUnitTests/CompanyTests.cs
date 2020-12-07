@@ -168,5 +168,22 @@ namespace TRPZUnitTests
 
             expected.Should().BeEquivalentTo(actual);
         }
+        [Test]
+        public void DirectOrder_Director_ReturnsListOfEmployeesInDirectOrder()
+        {
+            var expected = directOrderTest;
+            var direct = new DirectOrder();
+            var actual = direct.DisplayEmployees(company.Director);
+            expected.Should().BeEquivalentTo(actual);
+         
+        }
+        [Test]
+        public void OrderByPosition_Director_ReturnsListOfEmployeesByPosition()
+        {
+            var expected = heightOrderTest;
+            var height = new OrderByPosition();
+            var actual = height.DisplayEmployees(company.Director);
+            expected.Should().BeEquivalentTo(actual);
+        }
     }
 }
