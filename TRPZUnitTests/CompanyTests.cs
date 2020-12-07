@@ -1,14 +1,18 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using FluentAssertions;
+using Moq;
 using NUnit.Framework;
 using TRPZ;
 
 namespace TRPZUnitTests
 {
     [TestFixture]
-    public class Tests
+    public class CompanyTests
     {
         private Company company = new Company();
+        private List<Employee> heightOrderTest = new List<Employee>();
+        private List<Employee> directOrderTest = new List<Employee>();
         [SetUp]
         public void Setup()
         {
@@ -29,7 +33,7 @@ namespace TRPZUnitTests
             {
                 FullName = "Test worker",
                 Position = "Test worker position",
-                Wage = 12321
+                Wage = 12
             };
 
             Worker worker2 = new Worker()
@@ -46,10 +50,19 @@ namespace TRPZUnitTests
             manSub.Add(worker1);
             manager.DirectSubordinates = manSub;
             company.Director = dir;
+            heightOrderTest.Add(dir);
+            heightOrderTest.Add(manager);
+            heightOrderTest.Add(worker2);
+            heightOrderTest.Add(worker1);
+
+            directOrderTest.Add(dir);
+            directOrderTest.Add(manager);
+            directOrderTest.Add(worker1);
+            directOrderTest.Add(worker2);
         }
 
         [Test]
-        public void CanBeLoaded()
+        public void Load_Company_Success()
         {
             //Arrange
             var path = "D:/Study/TRPZ/Test.txt";
@@ -59,8 +72,9 @@ namespace TRPZUnitTests
             //Assert
             expected.Should().BeEquivalentTo(actual);
         }
+
         [Test]
-        public void CanSubordinateBeAddedToManager()
+        public void AddSubordinateToManager_Worker_Success()
         {
             //Arrange
             var worker = new Worker()
@@ -70,18 +84,19 @@ namespace TRPZUnitTests
                 Wage = 123
             };
             var manager = new Manager();
-            List<ICommandable> subordinates =  new List<ICommandable>();
+            List<ICommandable> subordinates = new List<ICommandable>();
             subordinates.Add(worker);
             manager.DirectSubordinates = subordinates;
-            var expected = manager ;
+            var expected = manager;
             //Act
-           var actual = new Manager();
-           actual.AddSubordinate(worker);
-           //Assert
+            var actual = new Manager();
+            actual.AddSubordinate(worker);
+            //Assert
             expected.Should().BeEquivalentTo(actual);
         }
+
         [Test]
-        public void CanSubordinateBeAddedToDirector()
+        public void AddSubordinateToDirector_Worker_Success()
         {
             //Arrange
             var worker = new Worker()
@@ -102,6 +117,56 @@ namespace TRPZUnitTests
             expected.Should().BeEquivalentTo(actual);
         }
 
+        [Test]
+        public void SearchByPosition_TestWorkerPosition_ReturnsListOfWorkers()
+        {
+            var position = "Test worker position";
+            Worker worker1 = new Worker()
+            {
+                FullName = "Test worker",
+                Position = "Test worker position",
+                Wage = 12
+            };
+            List<Employee> expected = new List<Employee>();
+            expected.Add(worker1);
 
+            var actual = company.SearchByPosition(position);
+
+
+            expected.Should().BeEquivalentTo(actual);
+        }
+        [Test]
+        public void SearchDirectSubordinates_Director_ReturnsListOfDirectorsSubordinates()
+        {
+         
+            List<ICommandable> subordinates = company.Director.DirectSubordinates;
+            var mock = new Mock<ICommander>();
+            mock.SetupGet(x => x.DirectSubordinates).Returns(subordinates);
+            var expected = subordinates;
+
+            var actual = company.SearchDirectSubordinates(company.Director);
+
+
+            expected.Should().BeEquivalentTo(actual);
+        }
+        [Test]
+        public void SearchByWage_321_ReturnsListOfEmployeesWithSameWage()
+        {
+            Manager manager = new Manager()
+            {
+                FullName = " Test Manager",
+                Position = " Test manager position",
+                Wage = 321
+            };
+            var wage = 321;
+            List<Employee> expected = new List<Employee>();
+            expected.Add(company.Director.DirectSubordinates[0] as Employee);
+            expected.Add(company.Director.DirectSubordinates[1] as Employee);
+           
+            var actual = company.SearchByWage(wage);
+
+
+            expected.Should().BeEquivalentTo(actual);
+        }
     }
 }

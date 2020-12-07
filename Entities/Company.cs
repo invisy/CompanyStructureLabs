@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using TRPZ;
 
 public class Company
@@ -7,7 +8,6 @@ public class Company
     public Director Director { get; set; }
 
     public IDisplayable DisplayWorkers { get; set; }
-    private IDisplayable defaultSearch;
 
     public Company()
     {
@@ -16,6 +16,12 @@ public class Company
     public Company(IDisplayable displayWorkers)
     {
         DisplayWorkers = displayWorkers;
+    }
+
+    private List<Employee> DefaultSearch()
+    {
+        var defaultDisplay = new DirectOrder();
+        return defaultDisplay.DisplayEmployees(Director);
     }
     public List<Employee> Display()
     {
@@ -44,7 +50,7 @@ public class Company
     public List<Employee> SearchByWage(decimal wage)
     {
         List<Employee> employees = new List<Employee>();
-        List<Employee> allEmployees = Display();
+        List<Employee> allEmployees = DefaultSearch();
         foreach (var item in allEmployees)
         {
             if(item.Wage >= wage) employees.Add(item);
@@ -60,7 +66,7 @@ public class Company
     public List<Employee> SearchByPosition(string position)
     {
         List<Employee> employees = new List<Employee>();
-        foreach (var item in Display())
+        foreach (var item in DefaultSearch())
         {
             if (item.Position.ToLower().Equals(position.ToLower())) employees.Add(item);
         }
