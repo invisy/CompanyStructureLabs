@@ -51,8 +51,8 @@ namespace TRPZUnitTests
             manager.DirectSubordinates = manSub;
             company.Director = dir;
             heightOrderTest.Add(dir);
-            heightOrderTest.Add(manager);
             heightOrderTest.Add(worker2);
+            heightOrderTest.Add(manager);
             heightOrderTest.Add(worker1);
 
             directOrderTest.Add(dir);
@@ -167,6 +167,29 @@ namespace TRPZUnitTests
 
 
             expected.Should().BeEquivalentTo(actual);
+        }
+        [Test]
+        public void DirectOrder_Director_ReturnsListOfEmployeesInDirectOrder()
+        {
+            var expected = directOrderTest;
+            var direct = new DirectOrder();
+            var actual = direct.DisplayEmployees(company.Director);
+            expected[0].Should().BeEquivalentTo(actual[0]);
+            expected[1].Should().BeEquivalentTo(actual[1]);
+            expected[2].Should().BeEquivalentTo(actual[2]);
+            expected[3].Should().BeEquivalentTo(actual[3]);
+
+        }
+        [Test]
+        public void OrderByPosition_Director_ReturnsListOfEmployeesByPosition()
+        {
+            var expected = heightOrderTest;
+            var height = new OrderByPosition();
+            var actual = height.DisplayEmployees(company.Director);
+            expected[0].Should().BeEquivalentTo(actual[0]);
+            expected[1].Should().BeEquivalentTo(actual[1]);
+            expected[2].Should().BeEquivalentTo(actual[2]);
+            expected[3].Should().BeEquivalentTo(actual[3]);
         }
     }
 }
