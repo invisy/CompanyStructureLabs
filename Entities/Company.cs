@@ -32,7 +32,7 @@ public class Company
     {
         return LoadSave.Load(path);
     }
-    public void SaveStructure(string path,Company company)
+    public static void SaveStructure(string path,Company company)
     {
         LoadSave.Save(path,company);
     }

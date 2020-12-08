@@ -17,6 +17,7 @@ namespace TRPZ
         public void AddSubordinate(ICommandable subordinate)
         {
             if(subordinate!=null) DirectSubordinates.Add(subordinate);
+            else throw new ArgumentNullException(nameof(subordinate), "Subordinate cannot be null");
         }
     }
 }

@@ -74,7 +74,7 @@ namespace TRPZUnitTests
         }
 
         [Test]
-        public void AddSubordinateToManager_Worker_Success()
+        public void AddSubordinateToManager_WorkerValid_Success()
         {
             //Arrange
             var worker = new Worker()
@@ -150,7 +150,7 @@ namespace TRPZUnitTests
             expected.Should().BeEquivalentTo(actual);
         }
         [Test]
-        public void SearchByWage_321_ReturnsListOfEmployeesWithSameWage()
+        public void SearchByWage_ValidWage_ReturnsListOfEmployeesWithSameWage()
         {
             Manager manager = new Manager()
             {
@@ -190,6 +190,26 @@ namespace TRPZUnitTests
             expected[1].Should().BeEquivalentTo(actual[1]);
             expected[2].Should().BeEquivalentTo(actual[2]);
             expected[3].Should().BeEquivalentTo(actual[3]);
+        }
+
+        [Test]
+        public void Display_ValidDirector_ReturnsListOfEmployees()
+        {
+            var mock = new Mock<IDisplayable>();
+            Director testDirector = new Director()
+            {
+                FullName = "Test Director"
+            };
+            List<Employee> expected = new List<Employee>();
+            expected.Add(testDirector);
+            mock.Setup(x => x.DisplayEmployees(testDirector)).Returns(expected);
+            Company testCompany = new Company(mock.Object);
+            testCompany.Director = testDirector;
+            //Act
+          var actual =   testCompany.Display();
+
+          //Assert
+          expected.Should().BeEquivalentTo(actual);
         }
     }
 }
