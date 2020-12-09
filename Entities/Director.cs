@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using TRPZ.Interfaces;
 
-namespace TRPZ
+namespace TRPZ.Entities
 {
     [DataContract]
-    public class Director :Employee, ICommander
+    public class Director : Employee, ICommander
     {
-        [DataMember]
-        public List<ICommandable> DirectSubordinates { get; set; }
-
         public Director()
         {
-            DirectSubordinates = new List<ICommandable>();
+            DirectSubordinates = new List<ICommander>();
         }
-        public void AddSubordinate(ICommandable subordinate)
+
+        [DataMember] 
+        public List<ICommander> DirectSubordinates { get; set; }
+
+        public void AddSubordinate(ICommander subordinate)
         {
-            if(subordinate!=null) DirectSubordinates.Add(subordinate);
+            if (subordinate != null) DirectSubordinates.Add(subordinate);
             else throw new ArgumentNullException(nameof(subordinate), "Subordinate cannot be null");
         }
     }

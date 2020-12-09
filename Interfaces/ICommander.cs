@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace TRPZ
+namespace TRPZ.Interfaces
 {
     public interface ICommander
-    { 
-        List<ICommandable> DirectSubordinates { get; set; }  
-        void AddSubordinate(ICommandable subordinate);
+    {
+        List<ICommander> DirectSubordinates { get; set; }
+        
+        void AddSubordinate(ICommander subordinate);
     }
 }

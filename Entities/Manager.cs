@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
+using TRPZ.Interfaces;
 
-namespace TRPZ
+namespace TRPZ.Entities
 {
     [DataContract]
-    public class Manager : Employee, ICommandable, ICommander
+    public class Manager : Employee, ICommander
     {
-        [DataMember]
-        public List<ICommandable> DirectSubordinates { get; set; }
-
         public Manager()
         {
-            DirectSubordinates = new List<ICommandable>();
+            DirectSubordinates = new List<ICommander>();
         }
-        public void AddSubordinate(ICommandable subordinate)
+
+        [DataMember] 
+        public List<ICommander> DirectSubordinates { get; set; }
+
+        public void AddSubordinate(ICommander subordinate)
         {
-            if(subordinate!=null) DirectSubordinates.Add(subordinate);
-            else throw new ArgumentNullException(nameof(subordinate),"Subordinate cannot be null");
+            if (subordinate != null) DirectSubordinates.Add(subordinate);
+            else throw new ArgumentNullException(nameof(subordinate), "Subordinate cannot be null");
         }
     }
 }

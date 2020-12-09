@@ -1,17 +1,17 @@
-﻿using System;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
-namespace TRPZ
+namespace TRPZ.Entities
 {
     [DataContract]
     public abstract class Employee
     {
-        [DataMember]
+        [DataMember] 
         public string FullName { get; set; }
-        [DataMember]
-        public string Position { get; set; }
-        [DataMember]
-        public Decimal Wage { get; set; }
 
+        [DataMember] 
+        public string Position { get; set; }
+
+        [DataMember] 
+        public decimal Wage { get; set; }
     }
 }

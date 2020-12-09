@@ -1,22 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using TRPZ.Entities;
+using TRPZ.Interfaces;
 
-namespace TRPZ
+namespace TRPZ.Other
 {
-    public class DirectOrder :IDisplayable
+    public class DirectOrder : IDisplayable
     {
-        List<Employee> employees = new List<Employee>();
+        private readonly List<Employee> _employees = new List<Employee>();
+
         public List<Employee> DisplayEmployees(ICommander commander)
         {
-            employees.Add(commander as Employee);
-            foreach (ICommandable item in commander.DirectSubordinates)
+            _employees.Add(commander as Employee);
+            foreach (var item in commander.DirectSubordinates)
             {
                 if (item is ICommander) DisplayEmployees(item as ICommander);
-                if(!(item is ICommander)) employees.Add(item as Employee);
-
+                if (!(item is ICommander)) _employees.Add(item as Employee);
             }
 
-            return employees;
+            return _employees;
         }
     }
 }
