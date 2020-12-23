@@ -85,7 +85,7 @@ namespace TRPZ
                if (command == "save")
                {
                    Console.WriteLine("enter path");
-                   company.SaveStructure(Console.ReadLine(),company);
+                   Company.SaveStructure(Console.ReadLine(),company);
                    break;
                }
             }

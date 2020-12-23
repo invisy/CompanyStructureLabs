@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TRPZ.csproj" />
+    <ProjectReference Include="..\TRPZ\TRPZ.csproj" />
   </ItemGroup>
 
 </Project>
