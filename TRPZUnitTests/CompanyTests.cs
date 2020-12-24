@@ -65,7 +65,7 @@ namespace TRPZUnitTests
         public void Load_Company_Success()
         {
             //Arrange
-            var path = "D:/Study/TRPZ/Test.txt";
+            var path = "../Files/Test.txt";
             var expected = company;
             //Act
             var actual = LoadSave.Load(path);

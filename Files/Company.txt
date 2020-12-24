@@ -2,43 +2,43 @@
   "Director": {
     "DirectSubordinates": [
       {
-        "$type": "TRPZ.Manager, TRPZ",
+        "$type": "TRPZ.Entities.Manager, TRPZ",
         "DirectSubordinates": [
           {
-            "$type": "TRPZ.Worker, TRPZ",
+            "$type": "TRPZ.Entities.Worker, TRPZ",
             "FullName": "Dave",
             "Position": "Big Guy",
             "Wage": 120000.0
           },
           {
-            "$type": "TRPZ.Worker, TRPZ",
+            "$type": "TRPZ.Entities.Worker, TRPZ",
             "FullName": "Marvin",
             "Position": "Big Black Guy",
             "Wage": 120000.0
           },
           {
-            "$type": "TRPZ.Manager, TRPZ",
+            "$type": "TRPZ.Entities.Manager, TRPZ",
             "DirectSubordinates": [
               {
-                "$type": "TRPZ.Worker, TRPZ",
+                "$type": "TRPZ.Entities.Worker, TRPZ",
                 "FullName": "Ernie, the left hand fast but the right hand sturdy",
                 "Position": "Notorious rapper and a boxer",
                 "Wage": 0.0
               },
               {
-                "$type": "TRPZ.Worker, TRPZ",
+                "$type": "TRPZ.Entities.Worker, TRPZ",
                 "FullName": "Eggs Benny",
                 "Position": "Notorious rapper and a boxer",
                 "Wage": 0.0
               },
               {
-                "$type": "TRPZ.Worker, TRPZ",
+                "$type": "TRPZ.Entities.Worker, TRPZ",
                 "FullName": "Ghost",
                 "Position": "Notorious rapper and a boxer",
                 "Wage": 0.0
               },
               {
-                "$type": "TRPZ.Worker, TRPZ",
+                "$type": "TRPZ.Entities.Worker, TRPZ",
                 "FullName": "Jim, the iron chin",
                 "Position": "Notorious rapper and a boxer",
                 "Wage": 0.0
@@ -54,7 +54,7 @@
         "Wage": 15000000.0
       },
       {
-        "$type": "TRPZ.Worker, TRPZ",
+        "$type": "TRPZ.Entities.Worker, TRPZ",
         "FullName": "Big Bunny",
         "Position": "Chief of the Freezer",
         "Wage": 12000.0

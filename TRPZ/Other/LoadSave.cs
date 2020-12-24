@@ -1,11 +1,13 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
+using TRPZ.Entities;
+using TRPZ.Interfaces;
 
-namespace TRPZ
+namespace TRPZ.Other
 {
-    public static class LoadSave
+    public class LoadSave : ILoadSave
     {
-       public static void Save(string path, Company company)
+       public void Save(string path, ICompany company)
         {
             JsonSerializer serializer = new JsonSerializer();
             serializer.Converters.Add(new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter());
@@ -20,9 +22,9 @@ namespace TRPZ
             }
         }
 
-       public static Company Load(string path)
+       public ICompany Load(string path)
         {
-            Company company = JsonConvert.DeserializeObject<Company>(File.ReadAllText(path), new JsonSerializerSettings
+            ICompany company = JsonConvert.DeserializeObject<Company>(File.ReadAllText(path), new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,
                 NullValueHandling = NullValueHandling.Ignore,

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using TRPZ.Entities;
 
-namespace TRPZ
+namespace TRPZ.Interfaces
 {
     public interface IDisplayable
     {

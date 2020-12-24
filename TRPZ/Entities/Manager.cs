@@ -4,22 +4,14 @@ using System.Dynamic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace TRPZ
+namespace TRPZ.Entities
 {
     [DataContract]
-    public class Manager : Employee, ICommandable, ICommander
+    public class Manager : Composite
     {
-        [DataMember]
-        public List<ICommandable> DirectSubordinates { get; set; }
-
-        public Manager()
+        public Manager(string fullName, string position, decimal wage) : base(fullName, position, wage)
         {
-            DirectSubordinates = new List<ICommandable>();
-        }
-        public void AddSubordinate(ICommandable subordinate)
-        {
-            if(subordinate!=null) DirectSubordinates.Add(subordinate);
-            else throw new ArgumentNullException(nameof(subordinate),"Subordinate cannot be null");
+            
         }
     }
 }
